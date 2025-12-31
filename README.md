@@ -1,44 +1,45 @@
+# Pastebin Lite
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+Pastebin Lite is a simple Pastebin-like web application that allows users to create and share text pastes using a unique URL.  
+Pastes can optionally expire based on time (TTL) or a maximum number of views.
 
-## Getting Started
+---
 
-First, run the development server:
+## Features
+- Create and share text pastes
+- Optional time-based expiry (TTL)
+- Optional view-count limits
+- Pastes become unavailable once constraints are exceeded
+- Safe rendering of paste content
+
+---
+
+## Tech Stack
+- **Frontend & Backend:** Next.js (Node.js)
+- **Persistence Layer:** Upstash Redis
+- **Deployment:** Vercel
+
+---
+
+## API Endpoints
+- `GET /api/healthz` – Health check
+- `POST /api/pastes` – Create a paste
+- `GET /api/pastes/:id` – Fetch a paste (API)
+- `GET /p/:id` – View a paste (HTML)
+
+---
+
+## Running Locally
 
 ```bash
+git clone https://github.com/Ranjitha-J-U/pastebin-lite
+cd pastebin-lite
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a .env.local file:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
-
-# pastebin-lite
-
+UPSTASH_REDIS_REST_URL=your_upstash_redis_url
+UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_token
+BASE_URL=http://localhost:3000
+TEST_MODE=0
